@@ -15,7 +15,7 @@ void addLine(std::vector<Line*>& Lines,sf::Vector2f size, sf::Vector2f position,
 }
 
 void checkForPoint( std::vector<Button*>& Buttons,std::vector<Line*>& Lines,Button* b, int player){
-	
+
 	//if(*(b->getValueptr()+81-b->getIndexes().x*9)){//if cell is closed
 	if(*(b->getValueptr()+81-b->getIndexes().x*8-b->getIndexes().y*3-b->getIndexes().z)){//if cell is closed
 		return;
@@ -66,7 +66,7 @@ int clickButton (sf::RenderWindow* Window, std::vector<Button*>& Buttons,std::ve
 
 	int compare = b->getIndexes().y*3+b->getIndexes().z; //compare - block (1 of 9) where we are going
 
-	
+
 
 
 
@@ -89,7 +89,7 @@ int clickButton (sf::RenderWindow* Window, std::vector<Button*>& Buttons,std::ve
 			break;
 		else if (i == compare*9+8)
 			std::cout<<"THE END"<<std::endl;std::cout.flush();
-			//Window->close(); ////Add endgame window. output is working if add some other cout outer of for loop
+		//Window->close(); ////Add endgame window. output is working if add some other cout outer of for loop
 	}
 
 	int temp = 0;
@@ -100,9 +100,9 @@ int clickButton (sf::RenderWindow* Window, std::vector<Button*>& Buttons,std::ve
 	}
 	if (temp ==9)
 		std::cout<<"END"<<std::endl;std::cout.flush();
-		//Window->close();
+	//Window->close();
 
-	
+
 	checkForPoint(Buttons,Lines,Buttons[tempcompare*9], (count+1)%2+1);
 
 
@@ -142,12 +142,12 @@ static void fillValues(Board& GameArray  , std::vector<Button*>& Buttons, std::v
 			for (int y =0;y<3;++y){
 
 				for (int x=0;x<3;++x){
-				sf::Vector2i Cords(52+75*x+236*j,28+75*y+236*i);
-				sf::Vector2i Size(75,75);
-				
-				GameArray.get(i*3+j,y,x) = 0; 
-				Button* b = new Button(&image, Cords, Size, &GameArray.get(i*3+j,y,x), clickButton);
-				Buttons.push_back(b);
+					sf::Vector2i Cords(52+75*x+236*j,28+75*y+236*i);
+					sf::Vector2i Size(75,75);
+
+					GameArray.get(i*3+j,y,x) = 0; 
+					Button* b = new Button(&image, Cords, Size, &GameArray.get(i*3+j,y,x), clickButton);
+					Buttons.push_back(b);
 				}
 			}
 		}
@@ -170,7 +170,7 @@ int main (){
 	settings.antialiasingLevel = 8;
 
 
-	
+
 
 	try{
 		while (1){
@@ -189,69 +189,6 @@ int main (){
 	}catch(...){
 		std::cout<<"End of game";
 	}
-	// Главный цикл приложения: выполняется, пока открыто окно
-	/*	while (window.isOpen())
-		{
-	// Обрабатываем очередь событий в цикле
-	sf::Event event;
-	while (window.waitEvent(event))
-	{
-	sf::Image image;
-	image.loadFromFile("picture.png");
-	sf::Vector2i v(50,60);
-	sf::Vector2i v1(75,75);
-	Button button(&image,v,v1);
-	// Пользователь нажал на «крестик» и хочет закрыть окно?
-	if (event.type == sf::Event::Closed)
-	window.close(); // тогда закрываем его
-	if (event.type == sf::Event::MouseButtonPressed){
-	sf::vector2i position = sf::mouse::getposition();
-	sf::vector2i window_pos = window.getposition();
-	//	std::cout<<position.x-window_pos.x << " " << position.y-window_pos.y<<std::endl;
-	button.checkclick(sf::vector2i(position.x-window_pos.x,position.y-window_pos.y));
-	}
-	// Установка цвета фона
-	window.clear(sf::Color(68,59,49 ));
-
-
-	//DrawLine(&window,500 ,150, SuperW, 90); 
-	//	DrawLine(&window,100 ,150, 15.4, 0); 
-	sf::Text text;
-
-	// select the font
-	sf::Font font;
-	if (!font.loadFromFile("arial.ttf"))
-	{
-	// error...
-	}
-	text.setFont(font); // font is a sf::Font
-
-	// set the string to display
-	text.setString("Hello world");
-
-	DrawButton(&window,button);
-	// set the character size
-	text.setCharacterSize(74); // in pixels, not points!
-
-	// set the color
-	text.setFillColor(sf::Color::Red);
-
-	// set the text style
-	//text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-	text.move(150,60);
-
-	// inside the main loop, between window.clear() and window.display()
-	window.draw(text);
-	// Отрисовка окна
-	window.display();
-	}
-
-
-	}
-
-	 */
-
-
 
 
 	return 0;
